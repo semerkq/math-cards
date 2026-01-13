@@ -1,12 +1,20 @@
 import cls from "./MainLayout.module.css";
 import { Header } from "../Header";
+import { Outlet } from "react-router-dom";
 
 export const MainLayout = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <div className={cls.mainLayout}>
       <Header />
-      <main>main</main>
-      <footer>footer</footer>
+      <div className={cls.mainWrapper}>
+        <main className={cls.main}>
+          <Outlet />
+        </main>
+      </div>
+      <footer className={cls.footer}>
+        Math Cards application | {currentYear} <br /> by Tatyana Sukhova
+      </footer>
     </div>
   );
 };
