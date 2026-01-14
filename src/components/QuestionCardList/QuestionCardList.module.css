@@ -1,0 +1,9 @@
+.listWrapper {
+	width: 100%;
+	display: flex;
+	margin: 0 auto;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}

@@ -1,18 +1,18 @@
 import cls from "./QuestionCard.module.css";
 import { Button } from "../Button";
 
-export const QuestionCard = () => {
+export const QuestionCard = (props) => {
   return (
     <div className={cls.questionCard}>
       <div className={cls.labelsWrapper}>
-        <div>Easy</div>
-        <div>In progress</div>
+        <div>{props.cards.metadata.difficulty}</div>
+        <div>{props.cards.metadata.status}</div>
       </div>
-      <h5 className={cls.cardTitle}>Теорема Виета</h5>
-      <p className={cls.cardQuestion}>Чему равна сумма и произведение корней уравнения x² + px + q = 0?</p>
+      <h5 className={cls.cardTitle}>{props.cards.preview.title}</h5>
+      <p className={cls.cardQuestion}>{props.cards.preview.question}</p>
       <div className={cls.shortAnswerWrapper}>
         <label>Короткий ответ:</label>
-        <p className={cls.shortAnswer}>x₁ + x₂ = -p, x₁·x₂ = q </p>
+        <p className={cls.shortAnswer}>{props.cards.preview["short_answer"]} </p>
       </div>
       <Button>Подробнее</Button>
     </div>

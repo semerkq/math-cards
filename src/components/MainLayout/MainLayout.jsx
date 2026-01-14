@@ -11,10 +11,10 @@ export const MainLayout = () => {
         <main className={cls.main}>
           <Outlet />
         </main>
+        <footer className={cls.footer}>
+          Math Cards application | {currentYear} <br /> by Tatyana Sukhova
+        </footer>
       </div>
-      <footer className={cls.footer}>
-        Math Cards application | {currentYear} <br /> by Tatyana Sukhova
-      </footer>
     </div>
   );
 };
