@@ -6,7 +6,6 @@ export const QuestionCard = (props) => {
   const difficultyVariant = props.cards.metadata.difficulty;
   const statusVariant = props.cards.metadata.status;
 
-  console.log(difficultyVariant);
   return (
     <div className={cls.questionCard}>
       <div className={cls.labelsWrapper}>
