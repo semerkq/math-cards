@@ -1,12 +1,17 @@
 import cls from "./QuestionCard.module.css";
 import { Button } from "../Button";
+import { Badges } from "../Badges";
 
 export const QuestionCard = (props) => {
+  const difficultyVariant = props.cards.metadata.difficulty;
+  const statusVariant = props.cards.metadata.status;
+
+  console.log(difficultyVariant);
   return (
     <div className={cls.questionCard}>
       <div className={cls.labelsWrapper}>
-        <div>{props.cards.metadata.difficulty}</div>
-        <div>{props.cards.metadata.status}</div>
+        <Badges variant={difficultyVariant}>{props.cards.metadata.difficulty}</Badges>
+        <Badges variant={statusVariant}>{props.cards.metadata.status}</Badges>
       </div>
       <h5 className={cls.cardTitle}>{props.cards.preview.title}</h5>
       <p className={cls.cardQuestion}>{props.cards.preview.question}</p>

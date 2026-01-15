@@ -8,7 +8,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 export const HomePage = () => {
   const [cardsInformation, setCardsInformation] = useState([]);
-  const [getQuestions, isLoading] = useFetch(async (arg) => {
+  const [getQuestions, isLoading, error] = useFetch(async (arg) => {
     const response = await fetch(`${API_URL}/${arg}`);
     const questions = await response.json();
 
@@ -22,6 +22,7 @@ export const HomePage = () => {
 
   return (
     <>
+      {error && <p>{error}</p>}
       {isLoading && <Loader />}
       <QuestionCardList cardsInformation={cardsInformation} />
     </>
