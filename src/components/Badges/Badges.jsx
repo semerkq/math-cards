@@ -2,15 +2,15 @@ import cls from "./Badges.module.css";
 
 export const Badges = (props) => {
   switch (props.variant) {
-    case "easy":
+    case 1:
       return <div className={`${cls.badges} ${cls.easy}`}>{props.children}</div>;
-    case "medium":
+    case 2:
       return <div className={`${cls.badges} ${cls.medium}`}>{props.children}</div>;
-    case "hard":
+    case 3:
       return <div className={`${cls.badges} ${cls.hard}`}>{props.children}</div>;
-    case "completed":
+    case true:
       return <div className={`${cls.badges} ${cls.completed}`}>{props.children}</div>;
-    case "in progress":
+    case false:
       return <div className={`${cls.badges} ${cls.inProgress}`}>{props.children}</div>;
     default:
       return <div className={cls.badges}>{props.children}</div>;
