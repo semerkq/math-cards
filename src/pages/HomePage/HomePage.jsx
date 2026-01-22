@@ -1,10 +1,11 @@
 import cls from "./HomePage.module.css";
-import { API_URL } from "../../constants";
+import { API_URL, SORT_OPTIONS } from "../../constants";
 import { useEffect, useState } from "react";
 import { QuestionCardList } from "../../components/QuestionCardList";
 import { Loader } from "../../components/Loader";
 import { useFetch } from "../../hooks/useFetch";
-import { SearchInput } from "../../components/SearchInput/SearchInput";
+import { SearchInput } from "../../components/SearchInput";
+import { SortSelect } from "../../components/SortSelect";
 
 export const HomePage = () => {
   const [cardsInformation, setCardsInformation] = useState([]);
@@ -39,14 +40,7 @@ export const HomePage = () => {
     <>
       <div className={cls.controlsContainer}>
         <SearchInput onChange={searchInputHandler} value={searchValue} />
-        <select className={cls.select} onChange={sortSelectHandler} value={sortSelectValue}>
-          <option value="">Сортировать по</option>
-          <hr />
-          <option value="_sort=difficulty">возрастанию сложности</option>
-          <option value="_sort=-difficulty">убыванию сложности</option>
-          <option value="_sort=status">выполненным задачам</option>
-          <option value="_sort=-status">невыполненным задачам</option>
-        </select>
+        <SortSelect onChange={sortSelectHandler} value={sortSelectValue} options={SORT_OPTIONS} />
       </div>
 
       {error && <p>{error}</p>}
