@@ -14,3 +14,14 @@
 	width: fit-content;
 	color: var(--text-color);
 }
+
+.paginationWrapper {
+	margin: 40px auto;
+	width: fit-content;
+	max-width: 800px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}

@@ -1,7 +1,7 @@
 .listWrapper {
 	width: 100%;
 	display: flex;
-	margin: 0 auto;
+	margin: 30px auto;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;

@@ -3,7 +3,9 @@ import cls from "./SortSelect.module.css";
 export const SortSelect = (props) => {
   return (
     <select className={cls.select} onChange={props.onChange} value={props.value}>
-      <option value="">Сортировать по</option>
+      <option value="" disabled={props.isDisabled}>
+        {props.firstOptionText}
+      </option>
       <hr />
       {props.options.map((option) => {
         return (
