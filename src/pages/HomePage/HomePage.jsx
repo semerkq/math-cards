@@ -6,7 +6,6 @@ import { Loader } from "../../components/Loader";
 import { useFetch } from "../../hooks/useFetch";
 import { SearchInput } from "../../components/SearchInput";
 import { SortSelect } from "../../components/SortSelect";
-import { Button } from "../../components/Button";
 import { Pagination } from "../../components/Pagination/Pagination";
 
 export const HomePage = () => {
@@ -14,9 +13,9 @@ export const HomePage = () => {
   const [searchValue, setSearchValue] = useState("");
   const [sortSelectValue, setSortSelectValue] = useState("");
   const [searchParams, setSearchParams] = useState(`?_page=1&_per_page=${DEFAULT_PER_PAGE}`);
-  const [sortSelecCountValue, setSortSelecCountValue] = useState();
+  const [sortSelecCountValue, setSortSelecCountValue] = useState(DEFAULT_PER_PAGE);
 
-  const paginationWrapperRef = useRef();
+  const controlsContainerRef = useRef();
 
   const [getQuestions, isLoading, error] = useFetch(async (arg) => {
     const response = await fetch(`${API_URL}/${arg}`);
@@ -44,7 +43,7 @@ export const HomePage = () => {
   }, [cardsInformation, searchValue]);
 
   const pagination = useMemo(() => {
-    const totalCards = cardsInformation.pages;
+    const totalCards = cardsInformation?.pages;
     return Array(totalCards)
       .fill(0)
       .map((_, i) => i + 1);
@@ -67,6 +66,8 @@ export const HomePage = () => {
     if (e.target.tagName === "BUTTON") {
       setSearchParams(`?_page=${e.target.textContent}&_per_page=${sortSelecCountValue}&${sortSelectValue}`);
     }
+
+    controlsContainerRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const sortSelectCountHandler = (e) => {
@@ -76,7 +77,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <div className={cls.controlsContainer}>
+      <div className={cls.controlsContainer} ref={controlsContainerRef}>
         <SearchInput onChange={searchInputHandler} value={searchValue} />
         <SortSelect
           onChange={sortSelectHandler}
@@ -99,7 +100,7 @@ export const HomePage = () => {
       {!isLoading && cards.length === 0 && <p className={cls.noCardsInfo}>Нет таких карточек...</p>}
       <QuestionCardList cardsInformation={cards} />
       {!isLoading && pagination.length > 1 && (
-        <div className={cls.paginationWrapper} ref={paginationWrapperRef}>
+        <div className={cls.paginationWrapper}>
           <Pagination paginationArray={pagination} isActive={getActiveNumber} onClick={paginationHandler} />
         </div>
       )}

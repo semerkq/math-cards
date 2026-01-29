@@ -1,10 +1,12 @@
 import cls from "./QuestionCard.module.css";
 import { Button } from "../Button";
 import { Badges } from "../Badges";
+import { useNavigate } from "react-router-dom";
 
 export const QuestionCard = (props) => {
   const difficultyVariant = props.cards.difficulty;
   const statusVariant = props.cards.status;
+  const navigate = useNavigate();
 
   return (
     <div className={cls.questionCard}>
@@ -20,7 +22,7 @@ export const QuestionCard = (props) => {
         <label>Короткий ответ:</label>
         <p className={cls.shortAnswer}>{props.cards.preview["short_answer"]} </p>
       </div>
-      <Button>Подробнее</Button>
+      <Button onClick={() => navigate(`/question/${props.cards.id}`)}>Подробнее</Button>
     </div>
   );
 };
