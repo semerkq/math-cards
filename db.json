@@ -19,7 +19,7 @@
           "solution": "По теореме Виета: x₁ + x₂ = 5, x₁·x₂ = 6",
           "explanation": "Корни: x₁ = 2, x₂ = 3. Проверка: 2+3=5, 2·3=6"
         },
-        "last_updated": "14.01.2026"
+        "last_updated": "01.02.2026"
       },
       "difficulty": 1,
       "status": false
@@ -43,7 +43,7 @@
           "solution": "2^(log₂ 8) = 8",
           "explanation": "По основному логарифмическому тождеству"
         },
-        "last_updated": "14.01.2026"
+        "last_updated": "01.02.2026"
       },
       "difficulty": 1,
       "status": false
@@ -139,7 +139,7 @@
           "solution": "1) S_осн = 6² = 36\n2) V = (1/3)·36·4 = 48",
           "explanation": "Основание — квадрат, его площадь = сторона²"
         },
-        "last_updated": "14.01.2026"
+        "last_updated": "01.02.2026"
       },
       "difficulty": 2,
       "status": true
@@ -967,21 +967,10 @@
         "short_answer": "f'(x₀) = 0 или не существует"
       },
       "details": {
-        "full_theorem": "Если функция y = f(x) имеет экстремум (максимум или минимум) в точке x₀ и дифференцируема в этой точке, то f'(x₀) = 0. Обратное неверно: из f'(x₀) = 0 не следует, что x₀ — точка экстремума.",
-        "conditions": [
-          "Функция должна быть определена в точке x₀",
-          "Для применения теоремы функция должна быть дифференцируемой в x₀",
-          "Если функция не дифференцируема в x₀, экстремум все равно может существовать"
-        ],
-        "example": {
-          "task": "Найдите критические точки функции f(x) = x³ - 3x.",
-          "solution": "f'(x) = 3x² - 3 = 3(x² - 1)\nf'(x) = 0 ⇒ x² - 1 = 0 ⇒ x = ±1\nКритические точки: x = -1 и x = 1",
-          "explanation": "Приравниваем производную к нулю для нахождения критических точек"
-        },
-        "last_updated": "14.01.2026"
+        "last_updated": "01.02.2026"
       },
       "difficulty": 2,
-      "status": false
+      "status": true
     },
     {
       "id": "43",
@@ -1305,54 +1294,6 @@
         "last_updated": "14.01.2026"
       },
       "difficulty": 1,
-      "status": false
-    },
-    {
-      "id": "6fa2",
-      "preview": {
-        "title": "kkk",
-        "question": "kkkkkkk",
-        "short_answer": "kkkkkkk"
-      },
-      "details": {
-        "full_theorem": "lllllll, llll, llll",
-        "conditions": [
-          "lllll",
-          "llll",
-          "llll",
-          "ldldldd"
-        ],
-        "example": {
-          "task": "dfjewfjefwe",
-          "solution": "ehfewbfbewf",
-          "explanation": "fbwebfbewfbewjbf"
-        }
-      },
-      "difficulty": 3,
-      "status": true
-    },
-    {
-      "id": "f28e",
-      "preview": {
-        "title": "kkk",
-        "question": "kkkkkkk",
-        "short_answer": "kkkkkkk"
-      },
-      "details": {
-        "full_theorem": "lllllll, llll, llll",
-        "conditions": [
-          "lllll",
-          "llll",
-          "llll",
-          "ldldldd"
-        ],
-        "example": {
-          "task": "dfjewfjefwe",
-          "solution": "ehfewbfbewf",
-          "explanation": "fbwebfbewfbewjbf"
-        }
-      },
-      "difficulty": 3,
       "status": false
     }
   ]

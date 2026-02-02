@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { data, useNavigate, useParams } from "react-router-dom";
 import { Badges } from "../../components/Badges";
 import { Button } from "../../components/Button";
 import cls from "./QuestionPage.module.css";
@@ -6,6 +6,7 @@ import { API_URL } from "../../constants";
 import { useFetch } from "../../hooks/useFetch";
 import { useEffect, useId, useState } from "react";
 import { Loader, SmallLoader } from "../../components/Loader";
+import { formatDate } from "../../helpers/formatDate";
 
 export const QuestionPage = () => {
   const [cards, setCards] = useState(null);
@@ -32,7 +33,13 @@ export const QuestionPage = () => {
   const [updateCard, isCardUpdating] = useFetch(async (isChecked) => {
     const response = await fetch(`${API_URL}/cards/${id}`, {
       method: "PATCH",
-      body: JSON.stringify({ status: isChecked }),
+      body: JSON.stringify({
+        status: isChecked,
+        details: {
+          ...cards.details,
+          last_updated: formatDate(Date.now()),
+        },
+      }),
     });
     const data = await response.json();
 
@@ -63,7 +70,7 @@ export const QuestionPage = () => {
               {cards.difficulty === 1 ? "легко" : cards.difficulty === 2 ? "средне" : "сложно"}
             </Badges>
             <Badges variant={statusVariant()}>{cards.status ? "завершено" : "в процессе"}</Badges>
-            <span className={cls.editDate}>Обновлено: {cards.details.last_updated}</span>
+            {cards.details.last_updated && <span className={cls.editDate}>Обновлено: {cards.details.last_updated}</span>}
           </div>
 
           <h5 className={cls.cardTitle}>{cards.preview.title}</h5>
@@ -111,7 +118,7 @@ export const QuestionPage = () => {
             {isCardUpdating && <SmallLoader />}
           </label>
 
-          <Button onClick={() => navigate(`/question/${cards.id}`)} isDisabled={isCardUpdating}>
+          <Button onClick={() => navigate(`/editquestion/${cards.id}`)} isDisabled={isCardUpdating}>
             Редактировать
           </Button>
           <Button onClick={() => navigate(`/`)} isDisabled={isCardUpdating}>
