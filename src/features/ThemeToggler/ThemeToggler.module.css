@@ -213,4 +213,20 @@
     .themeToggleWrap {
         margin: 0;
     }
+
+        .themeIconPart:nth-child(1) {
+        left: calc(50% - 0.3em); /* было -0.5em */
+    }
+
+    .themeIconPart ~ .themeIconPart {
+        left: calc(50% - 0.095em); /* было -0.05em */
+    }
+
+    .themeToggle:checked ~ .themeIcon .themeIconPart:nth-child(1) {
+        left: -0.47em; /* было -0.2em */
+    }
+
+    .themeToggle:checked ~ .themeIcon .themeIconPart ~ .themeIconPart {
+        left: calc(50% - 0.095em);
+    }
 }
