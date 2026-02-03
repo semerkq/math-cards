@@ -5,9 +5,10 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { QuestionPage } from "./pages/QuestionPage";
 import { AddQuestionPageLazy } from "./pages/AddQuestionPage";
 import { EditQuestionPageLazy } from "./pages/EditQuestionPage";
-import { AuthProvider } from "./components/auth";
+import { AuthProvider } from "./auth";
 import { useAuth } from "./hooks/useAuth";
 import { ForbiddenPage } from "./pages/ForbiddenPage";
+import { ThemeProvider } from "./theme/ThemeProvider";
 
 const ProtectedRoutes = () => {
   const { isAuth } = useAuth();
@@ -18,24 +19,26 @@ const ProtectedRoutes = () => {
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/question/:id" element={<QuestionPage />} />
-            <Route path="/forbidden" element={<ForbiddenPage />} />
+    <ThemeProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/question/:id" element={<QuestionPage />} />
+              <Route path="/forbidden" element={<ForbiddenPage />} />
 
-            <Route element={<ProtectedRoutes />}>
-              <Route path="/addquestion" element={<AddQuestionPageLazy />} />
-              <Route path="/editquestion/:id" element={<EditQuestionPageLazy />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="/addquestion" element={<AddQuestionPageLazy />} />
+                <Route path="/editquestion/:id" element={<EditQuestionPageLazy />} />
+              </Route>
+
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
-
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
