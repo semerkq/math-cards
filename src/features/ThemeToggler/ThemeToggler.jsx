@@ -26,17 +26,6 @@ export const ThemeToggler = () => {
           onChange={ChangeThemeHandler}
         />
         <span className={cls.themeFill}></span>
-        <span className={cls.themeIcon}>
-          <span className={cls.themeIconPart}></span>
-          <span className={cls.themeIconPart}></span>
-          <span className={cls.themeIconPart}></span>
-          <span className={cls.themeIconPart}></span>
-          <span className={cls.themeIconPart}></span>
-          <span className={cls.themeIconPart}></span>
-          <span className={cls.themeIconPart}></span>
-          <span className={cls.themeIconPart}></span>
-          <span className={cls.themeIconPart}></span>
-        </span>
       </span>
     </label>
   );
