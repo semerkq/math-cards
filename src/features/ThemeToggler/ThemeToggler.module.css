@@ -203,3 +203,14 @@
         box-shadow: 0 0 0 0.125em var(--primary);
     }
 }
+
+@media (max-width: 471px) {
+	.theme {
+        scale: 0.5;
+        margin: 2px 0 0 0;
+    }
+
+    .themeToggleWrap {
+        margin: 0;
+    }
+}

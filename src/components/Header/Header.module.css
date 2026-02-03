@@ -28,3 +28,26 @@ img {
 	justify-content: center;
 	user-select: none;
 }
+
+@media (max-width: 471px) {
+	.header {
+		padding: 0 5px;
+	}
+
+	.iconAndTitleWrapper {
+		span {
+			font-size: 14px;
+		}
+	}
+
+	img {
+		width: 20px;
+	}
+
+	.btnsWrapper {
+		button {
+			font-size: 14px;
+			padding: 0.45em 0.6em;
+		}
+	}
+}
