@@ -15,7 +15,7 @@ export const EditQuestion = ({ initialState = {} }) => {
 
   const editCardAction = async (_curr, formData) => {
     try {
-      delayFn();
+      await delayFn();
 
       const newQuestion = Object.fromEntries(formData);
       const isClearCard = formState.clearCard;

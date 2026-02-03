@@ -2,11 +2,12 @@ import { data, useNavigate, useParams } from "react-router-dom";
 import { Badges } from "../../components/Badges";
 import { Button } from "../../components/Button";
 import cls from "./QuestionPage.module.css";
-import { API_URL } from "../../constants";
+import { API_URL, AUTH_STORAGE } from "../../constants";
 import { useFetch } from "../../hooks/useFetch";
 import { useEffect, useId, useState } from "react";
 import { Loader, SmallLoader } from "../../components/Loader";
 import { formatDate } from "../../helpers/formatDate";
+import { useAuth } from "../../hooks/useAuth";
 
 export const QuestionPage = () => {
   const [cards, setCards] = useState(null);
@@ -14,6 +15,7 @@ export const QuestionPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const checkboxId = useId();
+  const { isAuth, setIsAuth } = useAuth();
 
   const difficultyVariant = () => {
     return cards.difficulty;
@@ -118,9 +120,11 @@ export const QuestionPage = () => {
             {isCardUpdating && <SmallLoader />}
           </label>
 
-          <Button onClick={() => navigate(`/editquestion/${cards.id}`)} isDisabled={isCardUpdating}>
-            Редактировать
-          </Button>
+          {isAuth && (
+            <Button onClick={() => navigate(`/editquestion/${cards.id}`)} isDisabled={isCardUpdating}>
+              Редактировать
+            </Button>
+          )}
           <Button onClick={() => navigate(`/`)} isDisabled={isCardUpdating}>
             Назад
           </Button>

@@ -14,3 +14,5 @@ export const COUNT_OF_PAGES_OPTIONS = [
 ];
 
 export const DEFAULT_PER_PAGE = 10;
+
+export const AUTH_STORAGE = "authKey";

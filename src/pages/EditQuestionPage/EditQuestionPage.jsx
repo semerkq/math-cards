@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Loader } from "../../components/Loader";
 
-export const EditQuestionPage = () => {
+const EditQuestionPage = () => {
   const { id } = useParams();
   const [card, setCard] = useState(null);
 
@@ -27,3 +27,5 @@ export const EditQuestionPage = () => {
     </>
   );
 };
+
+export default EditQuestionPage;
