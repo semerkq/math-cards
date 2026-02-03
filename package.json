@@ -1,35 +1,12 @@
 {
-	"name": "math-cards-project",
+	"name": "math-cards-project-server",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"lint": "eslint .",
-		"preview": "vite preview",
-		"server": "json-server --watch db.json -p 8805",
-		"server:help": "json-server --help",
-		"start:app": "npm run server & npm run dev"
-	},
-	"dependencies": {
-		"react": "^19.2.0",
-		"react-dom": "^19.2.0",
-		"react-router-dom": "^7.12.0",
-		"react-toastify": "^11.0.5"
+		"server": "json-server --watch db.json -p 8805"
 	},
 	"devDependencies": {
-		"@eslint/js": "^9.39.1",
-		"@types/react": "^19.2.5",
-		"@types/react-dom": "^19.2.3",
-		"@vitejs/plugin-react": "^5.1.1",
-		"eslint": "^9.39.1",
-		"eslint-plugin-prettier": "^5.5.4",
-		"eslint-plugin-react": "^7.37.5",
-		"eslint-plugin-react-hooks": "^7.0.1",
-		"eslint-plugin-react-refresh": "^0.4.24",
-		"globals": "^16.5.0",
-		"json-server": "^1.0.0-beta.3",
-		"vite": "^7.2.4"
+		"json-server": "^1.0.0-beta.3"
 	}
 }
