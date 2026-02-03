@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:8805";
+export const API_URL = import.meta.env.VITE_SERVER_URL;
 export const SORT_OPTIONS = [
   { value: "_sort=difficulty", text: "возрастанию сложности", key: "difficulty_asc" },
   { value: "_sort=-difficulty", text: "убыванию сложности", key: "difficulty_desc" },
