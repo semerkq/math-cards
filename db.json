@@ -1297,5 +1297,9 @@
       "difficulty": 1,
       "status": false
     }
-  ]
+  ],
+    "userProgress": {
+    "studiedCards": [
+    ]
+  }
 }
