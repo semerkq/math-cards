@@ -10,6 +10,12 @@
 	flex-wrap: wrap-reverse;
 }
 
+.progressContainer {
+	display: flex;
+	width: fit-content;
+	margin: 20px auto;
+}
+
 .noCardsInfo {
 	margin: 0 auto;
 	width: fit-content;
