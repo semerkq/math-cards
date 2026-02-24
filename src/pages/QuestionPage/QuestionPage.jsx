@@ -1,8 +1,8 @@
-import { data, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Badges } from "../../components/Badges";
 import { Button } from "../../components/Button";
 import cls from "./QuestionPage.module.css";
-import { API_URL, AUTH_STORAGE } from "../../constants";
+import { API_URL } from "../../constants";
 import { useFetch } from "../../hooks/useFetch";
 import { useEffect, useId, useState } from "react";
 import { Loader, SmallLoader } from "../../components/Loader";
@@ -12,10 +12,11 @@ import { useAuth } from "../../hooks/useAuth";
 export const QuestionPage = () => {
   const [cards, setCards] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
+  const [userProgress, setUserProgress] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
   const checkboxId = useId();
-  const { isAuth, setIsAuth } = useAuth();
+  const { isAuth } = useAuth();
 
   const difficultyVariant = () => {
     return cards.difficulty;
@@ -32,6 +33,22 @@ export const QuestionPage = () => {
     return data;
   });
 
+  const [fetchUserProgress] = useFetch(async () => {
+    const response = await fetch(`${API_URL}/userProgress`);
+    if (response.ok) {
+      const data = await response.json();
+      setUserProgress(data);
+    }
+  });
+
+  const [updateUserProgress] = useFetch(async (updatedProgress) => {
+    await fetch(`${API_URL}/userProgress`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedProgress),
+    });
+  });
+
   const [updateCard, isCardUpdating] = useFetch(async (isChecked) => {
     const response = await fetch(`${API_URL}/cards/${id}`, {
       method: "PATCH",
@@ -45,12 +62,35 @@ export const QuestionPage = () => {
     });
     const data = await response.json();
 
+    if (userProgress) {
+      let updatedStudiedCards;
+
+      if (isChecked) {
+        updatedStudiedCards = userProgress.studiedCards.includes(id)
+          ? userProgress.studiedCards
+          : [...userProgress.studiedCards, id];
+      } else {
+        updatedStudiedCards = userProgress.studiedCards.filter((cardId) => cardId !== id);
+      }
+
+      const updatedProgress = {
+        studiedCards: updatedStudiedCards,
+        lastUpdated: formatDate(Date.now()),
+      };
+
+      setUserProgress(updatedProgress);
+      await updateUserProgress(updatedProgress);
+    }
+
     setCards(data);
     return data;
   });
 
   useEffect(() => {
     fetchCard();
+    if (isAuth) {
+      fetchUserProgress();
+    }
   }, []);
 
   useEffect(() => {

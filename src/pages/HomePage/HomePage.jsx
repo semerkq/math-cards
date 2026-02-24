@@ -157,7 +157,6 @@ export const HomePage = () => {
   const updateProgress = async (cardId, studied) => {
     if (!isAuth || !userProgress) return;
 
-    // Обновляем прогресс пользователя
     let updatedStudiedCards;
 
     if (studied) {
@@ -177,21 +176,13 @@ export const HomePage = () => {
     await saveUserProgress(updatedProgress);
 
     try {
-      // Обновляем статус карточки на сервере
       await fetch(`${API_URL}/cards/${cardId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: studied }),
       });
 
-      // Обновляем статус в allCards
       setAllCards((prevCards) => prevCards.map((card) => (card.id === cardId ? { ...card, status: studied } : card)));
-
-      // ОБНОВЛЯЕМ статус в cardsInformation для текущей страницы
-      setCardsInformation((prevInfo) => ({
-        ...prevInfo,
-        data: prevInfo.data.map((card) => (card.id === cardId ? { ...card, status: studied } : card)),
-      }));
     } catch (error) {
       console.error("Ошибка при обновлении status карточки:", error);
     }
